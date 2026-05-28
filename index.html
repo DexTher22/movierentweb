@@ -3,14 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sip</title>
+    <title>Filmek</title>
 </head>
 <body>
 
   <div class="container">
-    <h1>Sip</h1>
-    
-    <button class="btn btn-primary" id="loginButton" type="submit">Belépés</button>
+    <h1>Filmek</h1>
+    <h2>Bejelentkezés</h2>
+    <form id="loginForm">
+      <div>
+        <label for="username" class="form-label">Felhasználónév</label>
+        <input type="text" class="form-control" id="username">
+      </div>
+      <div>
+        <label for="password" class="form-label">Jelszó</label>
+        <input type="password" class="form-control" id="password">
+      </div>
+      <button class="btn btn-primary mt-3" id="loginButton" type="submit">Belépés</button>
+    </form>
   </div>
     
     <script type="module" src="src/app.js"></script>

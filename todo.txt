@@ -1,0 +1,8 @@
+TODO: A vite.config.js-ben a html fájlok felvétele
+TODO: Filmek felvétele
+TODO: Sikertelen bejelentkezésnél Sweetalert
+TODO: Kijelentkezési lehetőség
+TODO: Regisztráció
+TODO: Filmek frissítése
+TODO: Filmek törlése
+TODO: 

@@ -3,9 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './style.css'
 import { getMovies, createMovie } from './apiService.js'
 
-
-
-
 const doc = {
     modalbox: document.querySelector('#modalbox'),
     modal:  document.querySelector('.modal'),
@@ -13,8 +10,10 @@ const doc = {
     addButton: document.querySelector('#addButton'),
     closeButton: document.querySelectorAll('.closeButton'),
     movieForm: document.querySelector('#movieForm'),
-    exitButton: document.querySelector('#exitButton')
+    exitButton: document.querySelector('#exitButton'),
+    moviesTbody: document.querySelector('#movies-tbody')
 }
+
 const modalState = {
     _show: false,
     get show() {
@@ -44,9 +43,24 @@ doc.closeButton[0].addEventListener('click', () => {
     modalState.show = false
 })
 
-
 doc.movieForm.addEventListener('submit', (e) => {
     e.preventDefault()
+    startSaveMovies(e)
+})
+
+
+
+doc.exitButton.addEventListener('click', () => {
+    startExit()
+
+})
+
+function startAddMovie() {
+    modalState.show = true
+    
+}
+
+function startSaveMovies(e) {
     console.log('Űrlap feldolgozás...')
     const formData = new FormData(e.target)
 
@@ -57,26 +71,32 @@ doc.movieForm.addEventListener('submit', (e) => {
     }
     const res = createMovie(movie)
     console.log(res)
-})
-
-doc.exitButton.addEventListener('click', () => {
-    startExit()
-
-})
-
-
-function startAddMovie() {
-    modalState.show = true
-    
+    startGetMovies()
 }
-
 
 function startGetMovies() {
     getMovies().then(res => {
         console.log(res)
+        renderMovies(res.data)
+        
     });
+}
+
+function renderMovies(movies) {
+    const rows = movies.map((movie) => {
+        return `
+            <tr>
+                <td>${movie.id}</td>
+                <td>${movie.title}</td>
+                <td>${movie.director}</td>
+                <td>${movie.releaseYear}</td>
+            </tr>
+        `
+    }).join('')
+    doc.moviesTbody.innerHTML = rows
 
 }
+
 
 function startExit () {
     console.log('Kilép')
